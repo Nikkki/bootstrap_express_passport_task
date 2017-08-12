@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+	head
+		include ../mixins/head
+		+head(1)
+	body
+		include ../mixins/header
+		+header('Выйти', '/logout', user)
+		.container
+			div.row
+				if user
+					div.col-lg-offset-2.col-md-offset-2.col-lg-8.col-md-8.col-sm-12.col-xs-12
+						ul.nav.nav-tabs
+							li
+								a(href='../' + user.user_id) Главная
+							li.active
+								a(href='../' + user.user_id+'/settings') Настройки
+
+								if  user.role === 'superuser'	
+									li
+										a(href='../' + user.user_id + '/users') Пользователи
+			br
+			div.row
+				div.col-md-8.highlight.col-md-offset-2
+					form(role='form', method='post', action='/settings')
+						.form-group
+							label(for='InputFUsername') Nickname
+							input#InputFUsername.form-control(name='username',type='text', placeholder='Введите nickname', value=user.username)
+						.form-group
+							label(for='InputFirstName') Имя
+							input#InputFirstName.form-control(name='firstName',type='text', placeholder='Введите имя')
+						.form-group
+							label(for='InputLastName') Фамилия
+							input#InputLastName.form-control(name='lastName',type='text', placeholder='Введите фамилию')
+						.form-group
+							label(for='InputAge') Возраст
+							input#InputAge.form-control(name='age',type='text', placeholder='Введите возраст')
+						.form-group
+							label(for='InputEmail') Email
+							input#InputEmail.form-control(name='email', type='email', placeholder='Enter email', value=user.email)
+						.form-group
+							label(for='InputPassword') Изменить пароль
+							input#InputPassword.form-control(name='password', type='password', placeholder='Password')
+						.form-group
+							label(for='InputFile') Добавить аватар
+							input#InputFile(type='file', name='avatar')
+							p.help-block Example block-level help text here.
+						.checkbox
+							label
+							input(type='checkbox')
+							|  Проверить меня
+						button.btn.btn-default(type='submit') Отправить
+
+
+					
+
+		include ../mixins/footerScripts
+			+footerScripts(1)
+	

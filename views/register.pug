@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+	head
+		include ./mixins/head
+		+head(0)
+	body
+		include ./mixins/header
+		|
+		+header('Войти', "/login")
+		|
+		.container
+			br
+			div.row
+				div.col-md-6.highlight.col-md-offset-3
+					h1 Регистрация
+					form.col-md-12(role='form', action="/register",method="post")
+						.form-group
+							input.form-control(type='text', name="username", placeholder='Введите nickname', autofocus)
+						.form-group
+							input.form-control(type='text', name="email", placeholder='Введите email')
+						.form-group
+							input.form-control(type='text', name="password", placeholder='Введите пароль')
+						a.text-right.btn.btn-default(type="button", href='/') Отменить
+						button.btn.btn-primary(type='submit') Зарегистрироваться
+
+		// jQuery (necessary for Bootstrap's JavaScript plugins)
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+		// Include all compiled plugins (below), or include individual files as needed
+		script(src='js/bootstrap.min.js')
+	

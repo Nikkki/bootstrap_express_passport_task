@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+	head
+		include ../mixins/head
+		+head(0)
+	body
+		include ../mixins/header
+		+header('Выйти', '/logout', user)
+		.container
+			div.row
+				if user
+					div.col-lg-offset-2.col-md-offset-2.col-lg-8.col-md-8.col-sm-12.col-xs-12
+						ul.nav.nav-tabs
+							li.active
+								a(href=user.user_id) Главная
+							li
+								a(href=user.user_id+'/settings') Настройки
+
+							if  user.role === 'superuser'	
+								li
+									a(href=user.user_id+'/users') Пользователи
+			br
+			div.row
+				div.col-md-8.highlight.col-md-offset-2
+					h2 Инфо	
+					if firstName
+						p firstName
+					if lastName
+						p lastName
+					if user.age
+						p #{user.age}
+					p Ваш nickname: #{user.username}
+						
+					p Email: #{user.email}
+
+					
+
+		include ../mixins/footerScripts
+			+footerScripts(0)
+	
